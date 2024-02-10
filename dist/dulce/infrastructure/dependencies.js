@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getAllDulcesController = exports.createDulceController = exports.getAllDulcesUseCase = exports.createDulceUseCase = exports.pgsqDulceRepository = void 0;
+const createDulceUseCase_1 = require("../application/useCases/createDulceUseCase");
+const getAllDulcesUseCase_1 = require("../application/useCases/getAllDulcesUseCase");
+const createDulceController_1 = require("./controllers/createDulceController");
+const getAllDulcesController_1 = require("./controllers/getAllDulcesController");
+const mongoDulceRepository_1 = require("./mongoDulceRepository");
+exports.pgsqDulceRepository = new mongoDulceRepository_1.PgsqDulceRepository();
+exports.createDulceUseCase = new createDulceUseCase_1.CreateDulceUseCase(exports.pgsqDulceRepository);
+exports.getAllDulcesUseCase = new getAllDulcesUseCase_1.GetAllDulcesUseCase(exports.pgsqDulceRepository);
+exports.createDulceController = new createDulceController_1.CreateDulceController(exports.createDulceUseCase);
+exports.getAllDulcesController = new getAllDulcesController_1.GetAllDulcesController(exports.getAllDulcesUseCase);
